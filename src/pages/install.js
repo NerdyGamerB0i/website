@@ -76,7 +76,13 @@ const InstallPage = () => {
 
 export function Head() {
     return (
-        <title>Cloudstream install</title>
+        <>
+            <title>Cloudstream installation</title>
+            <meta property="og:title" content="Cloudstream" />
+            <meta property="og:description" content="Cloudstream is an Android app for streaming and downloading Movies, TV-Series and Anime." />
+            <meta property="og:image" content={bgImage} />
+            <meta property="og:image:type" content="image/png" />
+        </>
     )
 }
 
