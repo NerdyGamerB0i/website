@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+import bgImage from "../media/phones.png"
 
 import rehypeReact from "rehype-react"
 
@@ -61,7 +62,15 @@ export default function PageTemplate({ data: { markdownRemark } }) {
 
 export function Head({data}) {
   return (
+    <>
       <title>{data.markdownRemark.frontmatter.title}</title>
+      <meta property="og:title" content={data.markdownRemark.frontmatter.title} />
+      <meta property="og:description" content={data.markdownRemark.excerpt} />
+      <meta property="og:image" content={bgImage} />
+      <meta property="og:image:type" content="image/png" />
+      <meta name="twitter:card" content="summary_large_image" />
+    </>
+
   )
 }
 
@@ -71,6 +80,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
       }
+      excerpt
       htmlAst
     }
   }

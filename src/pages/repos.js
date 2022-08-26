@@ -33,6 +33,7 @@ export function Head() {
             <meta property="og:description" content="Cloudstream is an Android app for streaming and downloading Movies, TV-Series and Anime." />
             <meta property="og:image" content={bgImage} />
             <meta property="og:image:type" content="image/png" />
+            <meta name="twitter:card" content="summary_large_image" />
         </>
     )
 }
