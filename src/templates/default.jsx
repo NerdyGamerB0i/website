@@ -18,6 +18,9 @@ const componentMap = {
   a: (props) => {
     return <Link className="link" to={props?.href} {...props} />
   },
+  kbd: (props) => {
+    return <kbd className="kbd" {...props} />
+  },
   ol: (props) => {
     return <ul className="steps steps-vertical" {...props} />
   },
