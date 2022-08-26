@@ -19,7 +19,7 @@ const componentMap = {
     return <Link className="link" to={props?.href} {...props} />
   },
   kbd: (props) => {
-    return <kbd className="kbd" {...props} />
+    return <kbd className="kbd bg-base-300" {...props} />
   },
   ol: (props) => {
     return <ul className="steps steps-vertical" {...props} />
