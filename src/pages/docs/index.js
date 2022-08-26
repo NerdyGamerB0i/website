@@ -13,6 +13,7 @@ const DocsPage = () => {
                 query {
                     allMarkdownRemark {
                             nodes {
+                                id
                                 frontmatter {
                                     title
                                 }
@@ -44,7 +45,7 @@ export function Head() {
             <meta property="og:description" content="Cloudstream is an Android app for streaming and downloading Movies, TV-Series and Anime." />
             <meta property="og:image" content={bgImage} />
             <meta property="og:image:type" content="image/png" />
-            <meta name="twitter:card" content="summary_large_image" />            <meta name="google-site-verification" content="eJAZtihmv0cJwd54kImmb2IfwLskeCfyW7gEm_HgXd8" />
+            <meta name="twitter:card" content="summary_large_image" />
         </>
     )
 }
