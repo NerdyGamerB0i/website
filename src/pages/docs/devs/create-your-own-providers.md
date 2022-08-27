@@ -69,5 +69,69 @@ private fun Element.toSearchResponse(): LiveSearchResponse? {
 
 In this code snippet I have separated the Element to SearchResult conversion to a separate function because that function can often be used when scraping the home page later. No need to parse the same type of element twice.
 
+## 2. Loading the home page
 
-# TODO REST
+Getting the homepage is essentially the same as getting search results but with a twist: you define the queries in a variable like this:
+
+ˋˋˋkotlin
+override val mainPage = mainPageOf(
+        Pair("1", "Recent Release - Sub"),
+        Pair("2", "Recent Release - Dub"),
+        Pair("3", "Recent Release - Chinese"),
+    )
+ˋˋˋ
+
+This dictates what the getMainPage function will be receiving as function arguments.
+Basically when the recent dubbed shows should be loaded the getMainPage gets called with a page number and the request you defined above.
+
+ˋˋˋkotlin
+override suspend fun getMainPage(
+        page: Int,
+        request : MainPageRequest
+    ): HomePageResponse {
+
+    // page: An integer > 0, starts on 1 and counts up, Depends on how much the user has scrolled.
+    // request.data == "2"
+    // request.name == "Recent Release - Dub"
+
+ˋˋˋ
+
+With these variables you should fetch the appropriate list of Search Response like this:
+
+ˋˋˋkotlin
+// Gogoanime
+override suspend fun getMainPage(
+        page: Int,
+        request : MainPageRequest
+    ): HomePageResponse {
+        // Use the data you defined earlier in the pair to send the request you want.
+        val params = mapOf("page" to page.toString(), "type" to request.data)
+        val html = app.get(
+            "https://ajax.gogo-load.com/ajax/page-recent-release.html",
+            headers = headers,
+            params = params
+        )
+        val isSub = listOf(1, 3).contains(request.data.toInt())
+
+        // In this case a regex is used to get all the correct variables
+        // But if you defined the Element.toSearchResponse() earlier you can often times use it on the homepage
+        val home = parseRegex.findAll(html.text).map {
+            val (link, epNum, title, poster) = it.destructured
+            newAnimeSearchResponse(title, link) {
+                this.posterUrl = poster
+                addDubStatus(!isSub, epNum.toIntOrNull())
+            }
+        }.toList()
+
+        // Return a list of search responses mapped to the request name defined earlier.
+        return newHomePageResponse(request.name, home)
+    }
+ˋˋˋ
+
+This might seem needlessly convoluted, but this system is to allow "infinite" loading, e.g loading the next page of search
+results when the user has scrolled to the end.
+
+TLDR: Exactly like searching but you defined your own queries.
+
+
+# TODO: REST
