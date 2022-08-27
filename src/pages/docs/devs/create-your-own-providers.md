@@ -73,18 +73,20 @@ In this code snippet I have separated the Element to SearchResult conversion to 
 
 Getting the homepage is essentially the same as getting search results but with a twist: you define the queries in a variable like this:
 
-ˋˋˋkotlin
+```kotlin
+
 override val mainPage = mainPageOf(
         Pair("1", "Recent Release - Sub"),
         Pair("2", "Recent Release - Dub"),
         Pair("3", "Recent Release - Chinese"),
     )
-ˋˋˋ
+```
 
 This dictates what the getMainPage function will be receiving as function arguments.
 Basically when the recent dubbed shows should be loaded the getMainPage gets called with a page number and the request you defined above.
 
-ˋˋˋkotlin
+```kotlin
+
 override suspend fun getMainPage(
         page: Int,
         request : MainPageRequest
@@ -94,11 +96,12 @@ override suspend fun getMainPage(
     // request.data == "2"
     // request.name == "Recent Release - Dub"
 
-ˋˋˋ
+```
 
 With these variables you should fetch the appropriate list of Search Response like this:
 
-ˋˋˋkotlin
+```kotlin
+
 // Gogoanime
 override suspend fun getMainPage(
         page: Int,
@@ -126,7 +129,7 @@ override suspend fun getMainPage(
         // Return a list of search responses mapped to the request name defined earlier.
         return newHomePageResponse(request.name, home)
     }
-ˋˋˋ
+```
 
 This might seem needlessly convoluted, but this system is to allow "infinite" loading, e.g loading the next page of search
 results when the user has scrolled to the end.
