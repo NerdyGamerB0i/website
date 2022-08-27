@@ -132,7 +132,7 @@ override suspend fun getMainPage(
 ```
 
 This might seem needlessly convoluted, but this system is to allow "infinite" loading, e.g loading the next page of search
-results when the user has scrolled to the end.
+responses when the user has scrolled to the end.
 
 TLDR: Exactly like searching but you defined your own queries.
 
