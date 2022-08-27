@@ -27,8 +27,14 @@ const componentMap = {
   li: (props) => {
     return <li className="step" {...props} />
   },
+  table: (props) => {
+    return <table className="table w-full" {...props} /> 
+  },
+  tr: (props) => {
+    return <tr className="hover" {...props} /> 
+  },
   hr: (props) => {
-    return <div class="divider" {...props} />
+    return <div className="divider" {...props} />
   }
 }
 
