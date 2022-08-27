@@ -3,6 +3,8 @@ import { useFocusable } from '@noriginmedia/norigin-spatial-navigation';
 import { Link, navigate } from "gatsby";
 
 
+const isBrowser = typeof window !== "undefined"
+
 function CompatBtn({autoFocus, href, onClick, group, target, children, className, ...props}) {
     const { ref, focused, focusSelf} = useFocusable();
 
@@ -17,7 +19,7 @@ function CompatBtn({autoFocus, href, onClick, group, target, children, className
         ref.current?.focus()
     }
 
-    if (window) {
+    if (isBrowser) {
         window.addEventListener("keyup", (ev) => {
             if (!focused) return;
             if (document.activeElement !== ref.current) return;

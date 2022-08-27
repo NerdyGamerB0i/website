@@ -2,7 +2,9 @@ import { init } from '@noriginmedia/norigin-spatial-navigation';
 
 require("prism-themes/themes/prism-dracula.min.css")
 
-if (window !== undefined) {
+const isBrowser = typeof window !== "undefined"
+
+if (isBrowser) {
     init({
         visualDebug: false
     });
