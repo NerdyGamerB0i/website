@@ -137,4 +137,163 @@ responses when the user has scrolled to the end.
 TLDR: Exactly like searching but you defined your own queries.
 
 
+## 3. Loading the show page
+
+// Currently Work in progress 
+
+The home page is a bit more complex than search results, but it uses the same logic used to get search results: using CSS selectors and regex to parse html into kotlin object. With the amount of info being parsed this function can get quite big, but the fundamentals are still pretty simple.
+
+A function can look something like this:
+
+
+```kotlin
+
+    // The url argument is the same as what you put in the Search Response from search() and getMainPage() 
+    override suspend fun load(url: String): LoadResponse {
+        val document = app.get(url).document
+
+        val details = document.select("div.detail_page-watch")
+        val img = details.select("img.film-poster-img")
+        val posterUrl = img.attr("src")
+        // It's safe to throw errors here, they will be shown to the user and can help debugging. 
+        val title = img.attr("title") ?: throw ErrorLoadingException("No Title")
+
+        var duration = document.selectFirst(".fs-item > .duration")?.text()?.trim()
+        var year: Int? = null
+        var tags: List<String>? = null
+        var cast: List<String>? = null
+        val youtubeTrailer = document.selectFirst("iframe#iframe-trailer")?.attr("data-src")
+        val rating = document.selectFirst(".fs-item > .imdb")?.text()?.trim()
+            ?.removePrefix("IMDB:")?.toRatingInt()
+
+        // I would not really recommend 
+        document.select("div.elements > .row > div > .row-line").forEach { element ->
+            val type = element?.select(".type")?.text() ?: return@forEach
+            when {
+                type.contains("Released") -> {
+                    year = Regex("\\d+").find(
+                        element.ownText() ?: return@forEach
+                    )?.groupValues?.firstOrNull()?.toIntOrNull()
+                }
+                type.contains("Genre") -> {
+                    tags = element.select("a").mapNotNull { it.text() }
+                }
+                type.contains("Cast") -> {
+                    cast = element.select("a").mapNotNull { it.text() }
+                }
+                type.contains("Duration") -> {
+                    duration = duration ?: element.ownText().trim()
+                }
+            }
+        }
+        val plot = details.select("div.description").text().replace("Overview:", "").trim()
+
+        val isMovie = url.contains("/movie/")
+
+        // https://sflix.to/movie/free-never-say-never-again-hd-18317 -> 18317
+        val idRegex = Regex(""".*-(\d+)""")
+        val dataId = details.attr("data-id")
+        val id = if (dataId.isNullOrEmpty())
+            idRegex.find(url)?.groupValues?.get(1)
+                ?: throw ErrorLoadingException("Unable to get id from '$url'")
+        else dataId
+
+        val recommendations =
+            document.select("div.film_list-wrap > div.flw-item").mapNotNull { element ->
+                val titleHeader =
+                    element.select("div.film-detail > .film-name > a") ?: return@mapNotNull null
+                val recUrl = fixUrlNull(titleHeader.attr("href")) ?: return@mapNotNull null
+                val recTitle = titleHeader.text() ?: return@mapNotNull null
+                val poster = element.select("div.film-poster > img").attr("data-src")
+                MovieSearchResponse(
+                    recTitle,
+                    recUrl,
+                    this.name,
+                    if (recUrl.contains("/movie/")) TvType.Movie else TvType.TvSeries,
+                    poster,
+                    year = null
+                )
+            }
+
+        if (isMovie) {
+            // Movies
+            val episodesUrl = "$mainUrl/ajax/movie/episodes/$id"
+            val episodes = app.get(episodesUrl).text
+
+            // Supported streams, they're identical
+            val sourceIds = Jsoup.parse(episodes).select("a").mapNotNull { element ->
+                var sourceId = element.attr("data-id")
+                if (sourceId.isNullOrEmpty())
+                    sourceId = element.attr("data-linkid")
+
+                if (element.select("span").text().trim().isValidServer()) {
+                    if (sourceId.isNullOrEmpty()) {
+                        fixUrlNull(element.attr("href"))
+                    } else {
+                        "$url.$sourceId".replace("/movie/", "/watch-movie/")
+                    }
+                } else {
+                    null
+                }
+            }
+
+            val comingSoon = sourceIds.isEmpty()
+
+            return newMovieLoadResponse(title, url, TvType.Movie, sourceIds) {
+                this.year = year
+                this.posterUrl = posterUrl
+                this.plot = plot
+                addDuration(duration)
+                addActors(cast)
+                this.tags = tags
+                this.recommendations = recommendations
+                this.comingSoon = comingSoon
+                addTrailer(youtubeTrailer)
+                this.rating = rating
+            }
+        } else {
+            val seasonsDocument = app.get("$mainUrl/ajax/v2/tv/seasons/$id").document
+            val episodes = arrayListOf<Episode>()
+            var seasonItems = seasonsDocument.select("div.dropdown-menu.dropdown-menu-model > a")
+            if (seasonItems.isNullOrEmpty())
+                seasonItems = seasonsDocument.select("div.dropdown-menu > a.dropdown-item")
+            seasonItems.apmapIndexed { season, element ->
+                val seasonId = element.attr("data-id")
+                if (seasonId.isNullOrBlank()) return@apmapIndexed
+
+                var episode = 0
+                val seasonEpisodes = app.get("$mainUrl/ajax/v2/season/episodes/$seasonId").document
+                var seasonEpisodesItems =
+                    seasonEpisodes.select("div.flw-item.film_single-item.episode-item.eps-item")
+                if (seasonEpisodesItems.isNullOrEmpty()) {
+                    seasonEpisodesItems =
+                        seasonEpisodes.select("ul > li > a")
+                }
+                seasonEpisodesItems.forEach {
+                    val episodeImg = it?.select("img")
+                    val episodeTitle = episodeImg?.attr("title") ?: it.ownText()
+                    val episodePosterUrl = episodeImg?.attr("src")
+                    val episodeData = it.attr("data-id") ?: return@forEach
+
+                    episode++
+
+                    val episodeNum =
+                        (it.select("div.episode-number").text()
+                            ?: episodeTitle).let { str ->
+                            Regex("""\d+""").find(str)?.groupValues?.firstOrNull()
+                                ?.toIntOrNull()
+                        } ?: episode
+
+                    episodes.add(
+                        newEpisode(Pair(url, episodeData)) {
+                            this.posterUrl = fixUrlNull(episodePosterUrl)
+                            this.name = episodeTitle?.removePrefix("Episode $episodeNum: ")
+                            this.season = season + 1
+                            this.episode = episodeNum
+                        }
+                    )
+                }
+            }
+```
+
 # TODO: REST
