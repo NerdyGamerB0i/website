@@ -1,14 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+
+import CompatBtn from "../compatbtn";
 
 const RepoCard = ({ url, isFirst }) => {
     const [data, setData] = useState(null)
-    const firstButton = useRef(null)
-
-    useEffect(() => {
-        if (!isFirst) return;
-        console.log({firstButton})
-        firstButton.current?.focus()
-    }, [firstButton])
 
     useEffect(() => {
         fetch(url)
@@ -30,21 +25,26 @@ const RepoCard = ({ url, isFirst }) => {
             </p>
             <div className="card-actions justify-end">
                 <div className="btn-group">
-                    <button ref={firstButton} className="btn btn-primary" onClick={() => {
-                        window.open(`cloudstreamrepo://${url.replace(/^https?:\/\//, "")}`)
-                    }}>Install</button>
-                    <button className="btn" onClick={() => {
-                        if (navigator.clipboard) {
-                            navigator.clipboard.writeText(url);
-                        } else {
-                            var tempInput = document.createElement("input");
-                            tempInput.value = url;
-                            document.body.appendChild(tempInput);
-                            tempInput.select();
-                            document.execCommand("copy");
-                            document.body.removeChild(tempInput);
-                        }
-                    }}>Copy URL</button>
+                    <CompatBtn
+                        autoFocus={isFirst}
+                        group={true}
+                        className="btn-primary"
+                        href={`cloudstreamrepo://${url.replace(/^https?:\/\//, "")}`}
+                        target="_blank"
+                        >Install</CompatBtn>
+                    <CompatBtn group={true} 
+                        onClick={() => {
+                            if (navigator.clipboard) {
+                                navigator.clipboard.writeText(url);
+                            } else {
+                                var tempInput = document.createElement("input");
+                                tempInput.value = url;
+                                document.body.appendChild(tempInput);
+                                tempInput.select();
+                                document.execCommand("copy");
+                                document.body.removeChild(tempInput);
+                            }
+                    }}>Copy URL</CompatBtn>
                 </div>
             </div>
         </div>

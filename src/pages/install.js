@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import Layout from "../components/layout"
 import Hero from "../components/hero"
+import CompatBtn from "../components/compatbtn"
 
 import bgImage from "../media/phones.png"
 
@@ -54,14 +55,16 @@ const InstallPage = () => {
             <h1 className="mb-5 text-5xl font-bold">Installation</h1>
             {(data != null) &&
                 <div className="flex flex-col items-center gap-3">{
-                    data.btns.map(it => {
+                    data.btns.map((it, idx) => {
                         return <div className="btn-group" key={JSON.stringify(it)}>
-                            <button className={"btn " + (it.pre?'btn-secondary':'btn-primary')} onClick={() => {
-                                window.open(it.apk.browser_download_url)
-                            }}>Download {it.tag}</button>
-                            <button className="btn"onClick={() => {
-                                window.open(it.url)
-                            }}>Release notes</button>
+                            <CompatBtn group={true} autoFocus={idx === 0}
+                                className={it.pre?'btn-secondary':'btn-primary'}
+                                href={it.apk.browser_download_url}
+                                target="_blank">Download {it.tag}</CompatBtn>
+                            <CompatBtn
+                                group={true}
+                                href={it.url}
+                                target="_blank">Release notes</CompatBtn>
                         </div>
                     })}
                 </div>
