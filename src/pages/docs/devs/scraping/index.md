@@ -1,5 +1,7 @@
 ---
 title: Scraping tutorial
+parent: For extension developers
+order: 3
 ---
 
 # Requests based scraping tutorial

@@ -1,5 +1,7 @@
 ---
 title: Creating your own JSON repository
+parent: For extension developers
+order: 4
 ---
 
 # Creating your own JSON repository

@@ -1,5 +1,7 @@
 ---
 title: Creating your own providers
+parent: For extension developers
+order: 2
 ---
 
 # Creating your own Providers

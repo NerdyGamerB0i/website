@@ -1,5 +1,7 @@
 ---
 title: Finding video links
+parent: Scraping tutorial
+order: 5
 ---
 
 # Finding video links

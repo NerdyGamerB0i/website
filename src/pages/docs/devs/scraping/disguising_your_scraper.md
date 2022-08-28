@@ -1,5 +1,7 @@
 ---
 title: Disguishing your scrapers
+parent: Scraping tutorial
+order: 4
 ---
 
 # Disguishing your scrapers

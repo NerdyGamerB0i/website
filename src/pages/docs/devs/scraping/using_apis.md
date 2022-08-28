@@ -1,5 +1,7 @@
 ---
 title: Using APIs
+parent: Scraping tutorial
+order: 2
 ---
 
 ### About

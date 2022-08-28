@@ -11,7 +11,10 @@ const DocsPage = () => {
             <StaticQuery
                 query={graphql`
                 query {
-                    allMarkdownRemark {
+                    allMarkdownRemark(
+                        sort: {fields: frontmatter___order}
+                        filter: {frontmatter: {parent: {eq: null}}}
+                    ) {
                             nodes {
                                 id
                                 frontmatter {
@@ -40,8 +43,8 @@ export default DocsPage
 export function Head() {
     return (
         <>
-            <title>Cloudstream 404</title>
-            <meta property="og:title" content="Cloudstream" />
+            <title>Cloudstream Docs</title>
+            <meta property="og:title" content="Cloudstream Docs" />
             <meta property="og:description" content="Cloudstream is an Android app for streaming and downloading Movies, TV-Series and Anime." />
             <meta property="og:image" content={bgImage} />
             <meta property="og:image:type" content="image/png" />

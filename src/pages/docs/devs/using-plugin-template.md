@@ -1,5 +1,7 @@
 ---
 title: Using plugin template
+parent: For extension developers
+order: 1
 ---
 
 # Using the template

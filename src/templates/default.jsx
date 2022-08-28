@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import bgImage from "../media/phones.png"
+import DocsCard from "../components/cards/docs"
 
 import rehypeReact from "rehype-react"
 
@@ -28,10 +29,10 @@ const componentMap = {
     return <li className="step" {...props} />
   },
   table: (props) => {
-    return <table className="table w-full" {...props} /> 
+    return <table className="table w-full" {...props} />
   },
   tr: (props) => {
-    return <tr className="hover" {...props} /> 
+    return <tr className="hover" {...props} />
   },
   hr: (props) => {
     return <div className="divider" {...props} />
@@ -39,7 +40,7 @@ const componentMap = {
 }
 
 
-export default function PageTemplate({ data: { markdownRemark } }) {
+export default function PageTemplate({ data: { markdownRemark, allMarkdownRemark } }) {
   const renderAst = new rehypeReact({
     createElement: React.createElement,
     components: componentMap,
@@ -47,6 +48,10 @@ export default function PageTemplate({ data: { markdownRemark } }) {
       return <div className="prose contents">{children}</div>
     }
   }).Compiler
+
+  const filtered = allMarkdownRemark.nodes.filter(it => it.frontmatter.parent === markdownRemark.frontmatter.title).map(it => {
+    return <DocsCard md={it} key={it} width="w-full" />
+  })
 
   return (
     <Layout>
@@ -60,16 +65,22 @@ export default function PageTemplate({ data: { markdownRemark } }) {
         </div>
         <div className="w-full mx-10 md:w-2/3 card bg-base-200 shadow-xl">
           <div className="card-body">
-            <h2 class="card-title">{markdownRemark.frontmatter.title}</h2>
+            <h1 class="card-title text-xl">{markdownRemark.frontmatter.title}</h1>
             {renderAst(markdownRemark.htmlAst)}
           </div>
         </div>
+        {filtered.length > 0 && <>
+          <div class="divider text-xl mt-5">Children</div>
+          <div className="grid gap-5 w-full px-10 place-items-center auto-rows-max grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {filtered}
+          </div></>}
+
       </div>
     </Layout>
   )
 }
 
-export function Head({data}) {
+export function Head({ data }) {
   return (
     <>
       <title>{data.markdownRemark.frontmatter.title}</title>
@@ -91,6 +102,20 @@ export const pageQuery = graphql`
       }
       excerpt
       htmlAst
+    }
+    allMarkdownRemark(
+      sort: {fields: frontmatter___order}
+      filter: {frontmatter: {parent: {ne: null}}}
+    ) {
+      nodes {
+        frontmatter {
+          title
+          order
+          parent
+        }
+        fileAbsolutePath
+        excerpt
+      }
     }
   }
 `

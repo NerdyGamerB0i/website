@@ -1,5 +1,7 @@
 ---
 title: Starting
+parent: Scraping tutorial
+order: 1
 ---
 
 Scraping is just downloading a webpage and getting the wanted information from it. 
