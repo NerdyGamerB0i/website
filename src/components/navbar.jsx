@@ -2,7 +2,6 @@ import React from "react"
 
 import {FaDiscord, FaGithub, FaBars} from "react-icons/fa"
 import {SiMatrix} from "react-icons/si"
-import GitDab from "./icons/gitdab"
 import Button from "./navbar/button"
 
 import logo from "../media/icon.svg"
@@ -27,9 +26,6 @@ const Navbar = () => (
         <div className="flex flex-0 navbar-end text-base-content">
             <Button name="Matrix" url="https://matrix.to/#/#lagrapps:matrix.org">
                 <SiMatrix />
-            </Button>
-            <Button name="Git Mirror" url="https://gitdab.com/recloudstream">
-                <GitDab />
             </Button>
             <Button name="Discord" url="https://discord.gg/5Hus6fM">
                 <FaDiscord />
