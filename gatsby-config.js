@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: require("./metadata"),
   plugins: [
-    "gatsby-plugin-postcss",
+    'gatsby-plugin-postcss',
     'gatsby-plugin-preact',
     'gatsby-plugin-sitemap',
     { resolve: 'gatsby-plugin-robots-txt', options: { policy: [{userAgent: '*', allow: '/'}] } },
@@ -14,15 +14,12 @@ module.exports = {
       __key: "pages"
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              showLineNumbers: false,
-            }
-          }
+          'gatsby-remark-smartypants',
+          { resolve: 'gatsby-remark-mermaid', options: { theme: "dark", } },
+          { resolve: 'gatsby-remark-prismjs', options: { showLineNumbers: false, } },
         ]
       }
     },
