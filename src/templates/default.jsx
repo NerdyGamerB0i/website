@@ -70,25 +70,25 @@ export default function PageTemplate({ data: { markdownRemark, allMarkdownRemark
             {renderAst(markdownRemark.htmlAst)}
           </div>
         </div>
+        <div className="alert shadow-lg w-full mx-auto md:w-2/3 mt-5">
+          <div>
+            <div>
+              <h3 className="font-bold">Edit on GitHub</h3>
+              <div className="text-xs">If you see a mistake here, you can open a pull request</div>
+            </div>
+          </div>
+           <div className="flex-none">
+             <a 
+                className="btn btn-primary btn-sm"
+                href={`https://github.com/recloudstream/recloudstream.github.io/blob/master/src/pages${node2slug(markdownRemark)}`}
+                target="_blank">Edit</a>
+           </div>
+        </div>
         {filtered.length > 0 && <>
           <div className="divider text-xl mt-5">Children</div>
           <div className="grid gap-5 w-full px-10 place-items-center auto-rows-max grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {filtered}
           </div></>}
-      </div>
-      <div className="alert shadow-lg w-full mx-10 md:w-2/3 mt-10">
-        <div>
-          <div>
-            <h3 className="font-bold">Edit on GitHub</h3>
-            <div className="text-xs">If you see a mistake here, you can open a pull request</div>
-          </div>
-        </div>
-         <div className="flex-none">
-           <a 
-              className="btn btn-primary btn-sm"
-              href={`https://github.com/recloudstream/recloudstream.github.io/blob/master/src/pages${node2slug(markdownRemark)}`}
-              target="_blank">Edit</a>
-         </div>
       </div>
     </Layout>
   )
