@@ -11,7 +11,7 @@ const Layout = ({ children }) => (
         <input id="drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content items-center flex flex-none flex-col min-h-screen">
             <Navbar />
-            <div className="pb-10 w-full text-base-content grow">
+            <div className="pb-10 px-5 w-full text-base-content grow">
                 {children}
             </div>
             <Footer />
