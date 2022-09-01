@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import bgImage from "../media/phones.png"
 import DocsCard from "../components/cards/docs"
-import { node2slug } from "../../utils";
+import { node2slug } from "../utils";
 
 import rehypeReact from "rehype-react"
 
