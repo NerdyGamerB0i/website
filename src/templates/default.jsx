@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import bgImage from "../media/phones.png"
 import DocsCard from "../components/cards/docs"
+import { node2slug } from "../../utils";
 
 import rehypeReact from "rehype-react"
 
@@ -56,7 +57,7 @@ export default function PageTemplate({ data: { markdownRemark, allMarkdownRemark
   return (
     <Layout>
       <div className="flex items-center w-full flex-col">
-        <div class="text-sm breadcrumbs md-5">
+        <div className="text-sm breadcrumbs md-5">
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/docs">Documentation</Link></li>
@@ -65,17 +66,19 @@ export default function PageTemplate({ data: { markdownRemark, allMarkdownRemark
         </div>
         <div className="w-full mx-10 md:w-2/3 card bg-base-200 shadow-xl">
           <div className="card-body">
-            <h1 class="card-title text-xl">{markdownRemark.frontmatter.title}</h1>
+            <h1 className="card-title text-xl">{markdownRemark.frontmatter.title}</h1>
             {renderAst(markdownRemark.htmlAst)}
           </div>
         </div>
         {filtered.length > 0 && <>
-          <div class="divider text-xl mt-5">Children</div>
+          <div className="divider text-xl mt-5">Children</div>
           <div className="grid gap-5 w-full px-10 place-items-center auto-rows-max grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {filtered}
           </div></>}
-
       </div>
+      <footer className="footer footer-center pt-10 mt-15 bg-base-200 text-base-content rounded gap-2">
+          <a href={`https://github.com/recloudstream/recloudstream.github.io/blob/master/src/pages{node2slug(markdownRemark)}`} target="_blank">Edit this page on GitHub</a>
+      </footer>
     </Layout>
   )
 }
@@ -100,6 +103,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
       }
+      fileAbsolutePath
       excerpt
       htmlAst
     }
