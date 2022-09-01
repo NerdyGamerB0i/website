@@ -76,9 +76,20 @@ export default function PageTemplate({ data: { markdownRemark, allMarkdownRemark
             {filtered}
           </div></>}
       </div>
-      <footer className="footer footer-center pt-10 mt-15 bg-base-200 text-base-content rounded gap-2">
-          <a href={`https://github.com/recloudstream/recloudstream.github.io/blob/master/src/pages{node2slug(markdownRemark)}`} target="_blank">Edit this page on GitHub</a>
-      </footer>
+      <div className="alert shadow-lg w-full mx-10 md:w-2/3 mt-10">
+        <div>
+          <div>
+            <h3 className="font-bold">Edit on GitHub</h3>
+            <div className="text-xs">If you see a mistake here, you can open a pull request</div>
+          </div>
+        </div>
+         <div className="flex-none">
+           <a 
+              className="btn btn-primary btn-sm"
+              href={`https://github.com/recloudstream/recloudstream.github.io/blob/master/src/pages${node2slug(markdownRemark)}`}
+              target="_blank">Edit</a>
+         </div>
+      </div>
     </Layout>
   )
 }
