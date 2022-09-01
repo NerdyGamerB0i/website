@@ -8,6 +8,15 @@ const DocsPage = () => {
 
     return <Layout>
         <div className="flex items-center w-full flex-col">
+            <article className="card bg-base-200 shadow-xl mx-10 mb-5 w-full md:w-2/3">
+                <div className="card-body">
+                    <h2 className="card-title">Dokka</h2>
+                    <p>Basically javadoc</p>
+                    <div className="card-actions justify-end">
+                        <a href="/dokka/" className="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </article>
             <StaticQuery
                 query={graphql`
                 query {
