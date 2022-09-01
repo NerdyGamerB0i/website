@@ -18,7 +18,7 @@ module.exports = {
       options: {
         plugins: [
           'gatsby-remark-smartypants',
-          { resolve: 'gatsby-remark-mermaid', options: { theme: "dark", } },
+          { resolve: 'gatsby-remark-mermaid', options: { theme: "dark", mermaidOptions: { themeCSS: ".mermaid foreignObject {overflow: visible;}" } } },
           { resolve: 'gatsby-remark-prismjs', options: { showLineNumbers: false, } },
         ]
       }
