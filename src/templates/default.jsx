@@ -8,7 +8,6 @@ import { node2slug } from "../utils";
 import rehypeReact from "rehype-react"
 
 function DivMixin(props) {
-  console.log(props)
   if (props?.class != null && props.class.includes("gatsby-highlight")) {
     props.class = props.class + " mockup-code mb-5"
   }
