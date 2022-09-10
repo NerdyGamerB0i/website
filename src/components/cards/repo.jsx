@@ -29,8 +29,13 @@ const RepoCard = ({ url, isFirst }) => {
                         autoFocus={isFirst}
                         group={true}
                         className="btn-primary"
-                        href={`cloudstreamrepo://${url.replace(/^https?:\/\//, "")}`}
-                        target="_blank"
+                        onClick={() => {
+                            if (window.RepoApi !== undefined) {
+                                window.RepoApi.installRepo(url)
+                            } else {
+                                window.open(`cloudstreamrepo://${url.replace(/^https?:\/\//, "")}`)
+                            }
+                        }}
                         >Install</CompatBtn>
                     <CompatBtn group={true} 
                         onClick={() => {
