@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 import CompatBtn from "../compatbtn";
+import { GoVerified } from "react-icons/go";
 
-const RepoCard = ({ url, isFirst }) => {
+const RepoCard = ({ data, isFirst }) => {
     const [data, setData] = useState(null)
+
+    const url = (typeof data === 'string') ? data : data.url
+    const isVerified = (typeof data === 'object' && data.verified)
 
     useEffect(() => {
         fetch(url)
@@ -18,8 +22,15 @@ const RepoCard = ({ url, isFirst }) => {
     }
 
     return <article className="card bg-base-200 shadow-xl w-full mx-10 md:w-2/3 mb-5">
-        <div className="card-body">
-            <h2 className="card-title">{data.name || "Unnamed"}</h2>
+        <div className="card-body flex flex-row">
+            <h2 className="card-title">
+                {isVerified &&
+                    <div class="tooltip" data-tip="Verified safe">
+                        <GoVerified class="stroke-current flex-shrink-0 h-6 w-6 success" />
+                    </div>
+                }
+                {data.name || "Unnamed"}
+            </h2>
             <p>
                 {data.description || "No description provided"}
             </p>
