@@ -29,7 +29,7 @@ const IndexPage = () => {
                 </div>
             </div>
             {repos &&
-                repos.map((it, index) => <RepoCard url={it} key={index} isFirst={index===0}/>)
+                repos.map((it, index) => <RepoCard repoData={it} key={index} isFirst={index===0}/>)
             }
         </div>
     </Layout>
