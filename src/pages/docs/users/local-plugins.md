@@ -1,7 +1,7 @@
 ---
 title: Using local extensions
 parent: For users
-order: 1
+order: 2
 ---
 
 It is possible to use extensions without using repositories. This can be useful when prototyping. 

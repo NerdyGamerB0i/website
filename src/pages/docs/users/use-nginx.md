@@ -1,7 +1,7 @@
 ---
 title: How to use nginx with cloudstream
 parent: For users
-order: 2
+order: 3
 ---
 
 ## What is Nginx?

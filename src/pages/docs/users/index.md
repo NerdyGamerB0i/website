@@ -8,6 +8,8 @@ order: 1
 An Android app to stream and download Movies, TV-Shows and Animes
 This [open source app](https://github.com/recloudstream/cloudstream) can stream any media content from various sources
 
+Check out the [FAQ](./faq.md) first!
+
 ### Disclaimer ⚠️
 The app is purely for educational and personal use.
 
@@ -44,10 +46,6 @@ You can also enable foreign language providers (such as French) under:
 Settings page > Provider Languages
 
 and tick the ones you want there
-
-### How does it work ?
-
-Basically this app sends requests to different websites (also called sources or providers) to find movies, series and animes and display them in the app nicely
 
 ### 100% free and no ads!
 
