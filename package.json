@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@noriginmedia/norigin-spatial-navigation": "^1.0.5",
+    "@yume-chan/adb": "^0.0.16",
+    "@yume-chan/adb-backend-webusb": "^0.0.16",
+    "@yume-chan/adb-credential-web": "^0.0.16",
     "daisyui": "^2.24.0",
     "gatsby": "^4.21.1",
     "gatsby-plugin-canonical-urls": "^4.22.0",

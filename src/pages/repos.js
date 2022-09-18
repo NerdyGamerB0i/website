@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 
 import Layout from "../components/layout"
 import RepoCard from "../components/cards/repo"
+import AdbConnect from "../components/adbconnect"
 import bgImage from "../media/phones.png"
 
 import { TiWarning } from "react-icons/ti";
@@ -28,6 +29,7 @@ const IndexPage = () => {
                     </div>
                 </div>
             </div>
+            <AdbConnect />
             {repos &&
                 repos.map((it, index) => <RepoCard repoData={it} key={index} isFirst={index===0}/>)
             }

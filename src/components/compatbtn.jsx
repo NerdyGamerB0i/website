@@ -19,15 +19,18 @@ function CompatBtn({autoFocus, href, onClick, group, target, children, className
         ref.current?.focus()
     }
 
-    if (isBrowser) {
-        window.addEventListener("keyup", (ev) => {
-            if (!focused) return;
-            if (document.activeElement !== ref.current) return;
-            if (ev.key === "Enter" || ev.key === " ") {
-                ref.current?.click()
-            }
-        })
-    }
+    useEffect(() => {
+        if (isBrowser) {
+            window.addEventListener("keyup", (ev) => {
+                if (!focused) return;
+                if (document.activeElement !== ref.current) return;
+                if (ev.key === "Enter" || ev.key === " ") {
+                    ref.current?.click()
+                }
+            })
+        }
+    }, [])
+    
 
     if (target !== "_blank" && !group && !onClick) {
         return <Link to={href} className={`btn ${className||""}`} ref={ref} {...props}>{children}</Link>

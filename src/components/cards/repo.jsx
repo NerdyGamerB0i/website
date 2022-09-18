@@ -3,6 +3,16 @@ import React, { useState, useEffect } from "react";
 import CompatBtn from "../compatbtn";
 import { GoVerified } from "react-icons/go";
 
+function installRepo(url) {
+    if (window.AdbConnection !== undefined) {
+        window.AdbConnection.subprocess.shell(`am start -a android.intent.action.VIEW -d "cloudstreamrepo://${url.replace(/^https?:\/\//, "")}"`)
+    } else if (window.RepoApi !== undefined) {
+        window.RepoApi.installRepo(url)
+    } else {
+        window.open(`cloudstreamrepo://${url.replace(/^https?:\/\//, "")}`)
+    }
+}
+
 const RepoCard = ({ repoData, isFirst }) => {
     const [data, setData] = useState(null)
 
@@ -41,11 +51,7 @@ const RepoCard = ({ repoData, isFirst }) => {
                         group={true}
                         className="btn-primary"
                         onClick={() => {
-                            if (window.RepoApi !== undefined) {
-                                window.RepoApi.installRepo(url)
-                            } else {
-                                window.open(`cloudstreamrepo://${url.replace(/^https?:\/\//, "")}`)
-                            }
+                            installRepo(url)
                         }}
                         >Install</CompatBtn>
                     <CompatBtn group={true} 
