@@ -30,8 +30,8 @@ const IndexPage = () => {
                             This means you should treat them with the same level of scrutiny you treat any apps. Extensions can also read all of the Cloudstream's data.
                         </span>
                         <br />
-                        <span className="text-xs flex flex-row">
-                            Repos with a <GoVerified class="stroke-current flex-shrink-0 mx-1" /> are constantly audited by the app deveoper, so you can trust them.
+                        <span className="text-xs flex flex-row items-baseline">
+                            Repos with a <GoVerified class="stroke-current flex-shrink-0 mx-1" /> are constantly audited by the app developers so you can probably trust them.
                         </span>
                     </div>
                 </div>
