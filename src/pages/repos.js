@@ -6,6 +6,7 @@ import AdbConnect from "../components/adbconnect"
 import bgImage from "../media/phones.png"
 
 import { TiWarning } from "react-icons/ti";
+import { GoVerified } from "react-icons/go";
 
 const IndexPage = () => {
     const [repos, setRepos] = useState([]);
@@ -25,7 +26,13 @@ const IndexPage = () => {
                     <TiWarning className="stroke-current flex-shrink-0 h-6 w-6"/>
                     <div>
                         <h3 className="font-bold text-xl">Keep in mind that the extensions can execute arbitrary code inside the app.</h3>
-                        <span className="text-xs">This means you should treat them with the same level of scrutiny you treat any apps. Extensions can also read all of the Cloudstream's data.</span>
+                        <span className="text-xs">
+                            This means you should treat them with the same level of scrutiny you treat any apps. Extensions can also read all of the Cloudstream's data.
+                        </span>
+                        <br />
+                        <span className="text-xs flex flex-row">
+                            Repos with a <GoVerified class="stroke-current flex-shrink-0 mx-1" /> are constantly audited by the app deveoper, so you can trust them.
+                        </span>
                     </div>
                 </div>
             </div>
