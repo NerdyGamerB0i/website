@@ -22,7 +22,6 @@ function CompatBtn({autoFocus, href, onClick, group, target, children, className
     useEffect(() => {
         if (isBrowser) {
             window.addEventListener("keyup", (ev) => {
-                if (!focused) return;
                 if (document.activeElement !== ref.current) return;
                 if (ev.key === "Enter" || ev.key === " ") {
                     ref.current?.click()
