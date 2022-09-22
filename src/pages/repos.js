@@ -7,6 +7,7 @@ import bgImage from "../media/phones.png"
 
 import { TiWarning } from "react-icons/ti";
 import { GoVerified } from "react-icons/go";
+import { IconContext } from "react-icons";
 
 const IndexPage = () => {
     const [repos, setRepos] = useState([]);
@@ -30,9 +31,11 @@ const IndexPage = () => {
                             This means you should treat them with the same level of scrutiny you treat any apps. Extensions can also read all of the Cloudstream's data.
                         </span>
                         <br />
-                        <span className="text-xs flex flex-row items-baseline">
-                            Repos with a <GoVerified class="stroke-current flex-shrink-0 mx-1" /> are constantly audited by the app developers so you can probably trust them.
-                        </span>
+                        <IconContext.Provider value={{className: 'inline-block'}}>
+                            <span className="text-xs">
+                                Repos with a <GoVerified class="stroke-current flex-shrink-0 mx-1" /> are constantly audited by the app developers so you can probably trust them.
+                            </span>
+                        </IconContext.Provider>
                     </div>
                 </div>
             </div>
