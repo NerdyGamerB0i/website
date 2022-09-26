@@ -8,6 +8,16 @@ const Footer = () => (
             <a class="link link-hover" href="https://discord.gg/5Hus6fM">Discord</a>
             <a class="link link-hover" href="https://matrix.to/#/#lagrapps:matrix.org">Matrix</a>
             <a class="link link-hover" onClick={() => {window.open("https://www.youtube.com/watch?v=f-UIBVsRSDQ")}}>DMCA</a>
+            <a class="link link-hover" onClick={() => {
+                if (window.eruda) {
+                    window.eruda.show();
+                } else {
+                    var script = document.createElement('script');
+                    script.src="https://cdn.jsdelivr.net/npm/eruda";
+                    script.onload = function () { eruda.init() }
+                    document.body.appendChild(script);
+                }
+            }}>Debug this page</a>
         </div>
         <div>
             <p>Website by <a className="link" href="https://github.com/c10udburst" target="_blank">Cloudburst</a></p>
