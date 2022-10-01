@@ -51,7 +51,6 @@ const IndexPage = () => {
                 <div class="alert shadow-lg w-full mx-10 md:w-2/3 mb-5">
                     <div>
                         <span>Fetching data...</span>
-                        <progress class="progress progress-primary w-1/3"></progress>
                     </div>
                 </div>              
             }
