@@ -6,14 +6,22 @@ import AdbConnect from "../components/adbconnect"
 import bgImage from "../media/phones.png"
 
 import { TiWarning } from "react-icons/ti";
+import { BiErrorAlt } from "react-icons/bi";
 import { GoVerified } from "react-icons/go";
 import { IconContext } from "react-icons";
 
 const IndexPage = () => {
-    const [repos, setRepos] = useState([]);
+    const [repos, setRepos] = useState(null);
+    const [afterTimeout, setAfterTimeout] = useState(false);
     
     useEffect(() => {
+        setTimeout(() => {
+            setAfterTimeout(true)
+        }, 5000);
         fetch("https://raw.githubusercontent.com/recloudstream/cs-repos/master/repos-db.json")
+            .catch(err => {
+                setAfterTimeout(true)
+            })
             .then(r => r.json())
             .then(data => {
                 setRepos(data)
@@ -39,9 +47,30 @@ const IndexPage = () => {
                     </div>
                 </div>
             </div>
-            <AdbConnect />
+            {(!repos && !afterTimeout) &&
+                <div class="alert shadow-lg">
+                    <div>
+                        <span>Fetching data...</span>
+                        <progress class="progress progress-primary w-1/3"></progress>
+                    </div>
+                </div>              
+            }
             {repos &&
-                repos.map((it, index) => <RepoCard repoData={it} key={index} isFirst={index===0}/>)
+                <>
+                    <AdbConnect />
+                    {repos.map((it, index) => <RepoCard repoData={it} key={index} isFirst={index===0}/>)}
+                </>
+            }
+            {(!repos && afterTimeout) &&
+                <div class="alert alert-error shadow-lg">
+                    <div>
+                        <BiErrorAlt />
+                        <div>
+                          <h3 class="font-bold">Failed to connect with GitHub servers.</h3>
+                          <div class="text-xs">GitHub has been a target of <a href="https://en.wikipedia.org/wiki/Censorship_of_GitHub" className="link" target="_blank">censorship</a> in some countries. <br/> Please try changing your <a href="https://1.1.1.1/dns/" className="link" target="_blank">DNS server</a> or try using a VPN.</div>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
     </Layout>
