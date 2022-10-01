@@ -65,7 +65,7 @@ const IndexPage = () => {
                     <div>
                         <BiErrorAlt />
                         <div>
-                          <h3 class="font-bold">Failed to connect with GitHub servers.</h3>
+                          <h3 class="font-bold">Failed to connect to GitHub servers.</h3>
                           <div class="text-xs">GitHub has been a target of <a href="https://en.wikipedia.org/wiki/Censorship_of_GitHub" className="link" target="_blank">censorship</a> in some countries. <br/> Please try changing your <a href="https://1.1.1.1/dns/" className="link" target="_blank">DNS server</a> or try using a VPN.</div>
                         </div>
                     </div>
