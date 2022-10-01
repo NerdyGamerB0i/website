@@ -48,7 +48,7 @@ const IndexPage = () => {
                 </div>
             </div>
             {(!repos && !afterTimeout) &&
-                <div class="alert shadow-lg">
+                <div class="alert shadow-lg w-full mx-10 md:w-2/3 mb-5">
                     <div>
                         <span>Fetching data...</span>
                         <progress class="progress progress-primary w-1/3"></progress>
@@ -62,7 +62,7 @@ const IndexPage = () => {
                 </>
             }
             {(!repos && afterTimeout) &&
-                <div class="alert alert-error shadow-lg">
+                <div class="alert alert-error shadow-lg w-full mx-10 md:w-2/3 mb-5">
                     <div>
                         <BiErrorAlt />
                         <div>
