@@ -41,7 +41,7 @@ const IndexPage = () => {
                     </div>
                 </div>
             </div>
-            {(!repos && !setHadError) &&
+            {(!repos && !hadError) &&
                 <div class="alert shadow-lg w-full mx-10 md:w-2/3 mb-5">
                     <div>
                         <span>Fetching data...</span>
@@ -54,7 +54,7 @@ const IndexPage = () => {
                     {repos.map((it, index) => <RepoCard repoData={it} key={index} isFirst={index===0}/>)}
                 </>
             }
-            {(!repos && setHadError) &&
+            {(!repos && hadError) &&
                 <div class="alert alert-error shadow-lg w-full mx-10 md:w-2/3 mb-5">
                     <div>
                         <BiErrorAlt />
