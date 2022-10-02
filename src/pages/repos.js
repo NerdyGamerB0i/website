@@ -12,20 +12,14 @@ import { IconContext } from "react-icons";
 
 const IndexPage = () => {
     const [repos, setRepos] = useState(null);
-    const [afterTimeout, setAfterTimeout] = useState(false);
+    const [hadError, setHadError] = useState(false);
     
     useEffect(() => {
-        setTimeout(() => {
-            setAfterTimeout(true)
-        }, 5000);
-        fetch("https://raw.githubusercontent.com/recloudstream/cs-repos/master/repos-db.json")
-            .catch(err => {
-                setAfterTimeout(true)
-            })
+        fetch("https://raw.githubusercontent.com/recloudstream/cs-repos/master/repos-db.json", { signal: AbortSignal.timeout(5000) })
+            .catch(err => { setHadError(true) })
             .then(r => r.json())
-            .then(data => {
-                setRepos(data)
-            })
+            .then(setRepos)
+            .catch(err => { setHadError(true) })
     }, [setRepos])
 
     return <Layout>
@@ -47,7 +41,7 @@ const IndexPage = () => {
                     </div>
                 </div>
             </div>
-            {(!repos && !afterTimeout) &&
+            {(!repos && !setHadError) &&
                 <div class="alert shadow-lg w-full mx-10 md:w-2/3 mb-5">
                     <div>
                         <span>Fetching data...</span>
@@ -60,7 +54,7 @@ const IndexPage = () => {
                     {repos.map((it, index) => <RepoCard repoData={it} key={index} isFirst={index===0}/>)}
                 </>
             }
-            {(!repos && afterTimeout) &&
+            {(!repos && setHadError) &&
                 <div class="alert alert-error shadow-lg w-full mx-10 md:w-2/3 mb-5">
                     <div>
                         <BiErrorAlt />
