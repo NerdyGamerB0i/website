@@ -10,10 +10,10 @@
     100% { display: block; }
 }
 
-.swap-child:nth-child(1) {
-    animation: five-s-hide 5s linear;
+.swap-child *:nth-child(1) {
+    animation: five-s-hide 5s linear 0s 1 normal forwards;
 }
-.swap-child:nth-child(2) {
+.swap-child *:nth-child(2) {
     display: none;
-    animation: five-s-show 5s linear;
+    animation: five-s-show 5s linear 0s 1 normal forwards;
 }
