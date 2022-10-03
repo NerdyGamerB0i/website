@@ -10,12 +10,14 @@ import { BiErrorAlt } from "react-icons/bi";
 import { GoVerified } from "react-icons/go";
 import { IconContext } from "react-icons";
 
+import "./repos.css";
+
 const IndexPage = () => {
     const [repos, setRepos] = useState(null);
     const [hadError, setHadError] = useState(false);
     
     useEffect(() => {
-        fetch("https://raw.githubusercontent.com/recloudstream/cs-repos/master/repos-db.json", { signal: AbortSignal.timeout(5000) })
+        fetch("https://raw.githubusercontent.com/recloudstream/cs-repos/master/repos-db.json")
             .catch(err => { setHadError(true) })
             .then(r => r.json())
             .then(setRepos)
@@ -42,11 +44,22 @@ const IndexPage = () => {
                 </div>
             </div>
             {(!repos && !hadError) &&
-                <div class="alert shadow-lg w-full mx-10 md:w-2/3 mb-5">
-                    <div>
-                        <span>Fetching data...</span>
+                <div className="swap-child">
+                    <div class="alert shadow-lg w-full mx-10 md:w-2/3 mb-5">
+                        <div>
+                            <span>Fetching data...</span>
+                        </div>
                     </div>
-                </div>              
+                    <div class="alert alert-error shadow-lg w-full mx-10 md:w-2/3 mb-5">
+                        <div>
+                            <BiErrorAlt />
+                            <div>
+                            <h3 class="font-bold">Failed to connect to GitHub servers.</h3>
+                            <div class="text-xs">GitHub has been a target of <a href="https://en.wikipedia.org/wiki/Censorship_of_GitHub" className="link" target="_blank">censorship</a> in some countries. <br/> Please try changing your <a href="https://1.1.1.1/dns/" className="link" target="_blank">DNS server</a> or try using a VPN.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
             {repos &&
                 <>
