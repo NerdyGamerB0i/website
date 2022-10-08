@@ -10,7 +10,7 @@ order: 4
 	1. [Windows Subsystem for Android](https://apps.microsoft.com/store/detail/windows-subsystem-for-android%E2%84%A2-with-amazon-appstore/9P3395VX91NR?hl=en-us&gl=us)
 	2. [WSA Sideloader](https://github.com/infinitepower18/WSA-Sideloader) or [WSA Pacman](https://github.com/alesimula/wsa_pacman)
 
-- Download the pre-release from the [this site](https://recloudstream.github.io). 
+- Download the pre-release from [this site](https://recloudstream.github.io). 
 - Enable developer mode in WSA settings. It is also recommended you enable continuous mode, however WSA Sideloader will attempt to start the subsystem for you if it's not running. 
 
 ![image](https://user-images.githubusercontent.com/57977673/194704052-a1062c43-df9e-434a-8f5d-ea6ef249c041.png)
