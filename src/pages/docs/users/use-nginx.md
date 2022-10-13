@@ -28,29 +28,29 @@ The advantages of this provier over jellyfin are that it's lightweight and integ
 Here I'll cover the install on a managed seedbox using ultra.cc
 
 Here is a diagram I made to summarize how everything works:
-
+<!-- 
 ```mermaid
 flowchart TB
 
 subgraph P[P2P network]
-Alice((Alice)) <--> Trackers
-Bob((Bob)) <--> Trackers
-Paul((Paul)) <--> Trackers
+Alice((Alice)) <-- > Trackers
+Bob((Bob)) <-- > Trackers
+Paul((Paul)) <-- > Trackers
 end
 
-Trackers --> Prowlarr
+Trackers -- > Prowlarr
 
 subgraph S[Search for Movies, Tv series, Animes]
-Prowlarr <---> |Requests| Radarr
-Prowlarr <---> |Requests| Sonarr
+Prowlarr <--- > |Requests| Radarr
+Prowlarr <--- > |Requests| Sonarr
 click Prowlarr callback "Prowlarr is used for stuff"
 end
 
-Sonarr --> |Send torrent| A(Radarr)
-Radarr[Radarr] --> |Send torrent| A(Radarr)
-A[Transmission] -->|Download to filesystem| C{Nginx}
-C -->|Stream| D(Cloudstream-3)
-```
+Sonarr -- > |Send torrent| A(Radarr)
+Radarr[Radarr] -- > |Send torrent| A(Radarr)
+A[Transmission] -- >|Download to filesystem| C{Nginx}
+C -- >|Stream| D(Cloudstream-3)
+``` -->
 
 Prowlarr is between the tracker and the media mangment apps (radarr and sonarr): it handles the requests to the trackers (that you add inside prowlarr)
 
