@@ -13,7 +13,7 @@ const DocsPage = () => {
                     <h2 className="card-title">Dokka</h2>
                     <p>Basically javadoc</p>
                     <div className="card-actions justify-end">
-                        <a href="/dokka/" className="btn btn-primary">View</a>
+                        <a href="https://recloudstream.github.io/dokka/" className="btn btn-primary">View</a>
                     </div>
                 </div>
             </article>

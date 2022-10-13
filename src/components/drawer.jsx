@@ -33,7 +33,7 @@ const Drawer = () => (
         <li><Link to="/">Home</Link></li>
         <li><Link to="/repos">Repositories</Link></li>
         <div className="divider">Docs</div>
-        <li><a href="/dokka/">Dokka</a></li>
+        <li><a href="https://recloudstream.github.io/dokka/">Dokka</a></li>
         <li><Link to="/docs">Documentation</Link></li>
         <StaticQuery
             query={graphql`

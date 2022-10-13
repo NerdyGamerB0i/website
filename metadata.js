@@ -1,4 +1,4 @@
 module.exports = {
-    title: `Recloudstream`,
-    siteUrl: `https://recloudstream.github.io`
+    title: `Cloudstream`,
+    siteUrl: `https://example.com`
 }

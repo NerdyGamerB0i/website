@@ -1,6 +1,14 @@
 module.exports = {
   siteMetadata: require("./metadata"),
+  pathPrefix: '__PATH_PREFIX__',
   plugins: [
+    {
+      resolve: `gatsby-plugin-runtime-path-prefix`,
+      options: {
+        prefix: `__PATH_PREFIX__`,
+        pattern: /^(\/(?:ipfs|ipns)\/[^/]+)/
+      },
+    },
     {
       resolve: `gatsby-plugin-compile-es6-packages`,
       options: {
@@ -33,5 +41,6 @@ module.exports = {
     { resolve: 'gatsby-plugin-nprogress', options: { color: '#6419E6' } },
     { resolve: 'gatsby-plugin-manifest', options: require("./manifest") },
     { resolve: 'gatsby-plugin-canonical-urls', options: { siteUrl: require("./metadata").siteUrl } },
+    'gatsby-plugin-no-sourcemaps',
   ]
 };
