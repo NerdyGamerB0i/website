@@ -22,3 +22,8 @@ If you're not in a supported country, change your PC region setting to United St
 ![image](https://user-images.githubusercontent.com/57977673/194704070-b83185bd-d3d8-4d88-aa67-871a9feaf189.png)
 
 *Ref: [WSA Sideloader](https://github.com/infinitepower18/WSA-Sideloader)*
+
+
+## Video guide
+
+<video src="https://cdn.discordapp.com/attachments/737724143570780260/1031100838212538388/wsa.mp4" controls>

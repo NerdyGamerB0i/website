@@ -16,7 +16,7 @@ const IndexPage = () => {
                 <div className="divider divider-horizontal" />
                 <CompatBtn className="btn-primary" href="/repos">Repositories</CompatBtn>
             </div>
-            <CompatBtn className="btn-secondary" href="/docs">Help</CompatBtn>
+            <CompatBtn className="btn-secondary" href="/docs">Guides, FAQ & Docs</CompatBtn>
         </Hero>
     </Layout>
 
