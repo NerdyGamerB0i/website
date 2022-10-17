@@ -18,9 +18,9 @@ order: 5
 
 ## Select subtitle source
 `Video player> sources> subtitles>` 3 types of subtitle source: 
-1. from the provider
-2. from the device 
-3. from the internet which is [open subtitles](https://www.opensubtitles.com/)
+- from the provider
+- from the device 
+- from the internet which is [open subtitles](https://www.opensubtitles.com/)
 
 ![image](https://user-images.githubusercontent.com/57977673/194716636-f16fe137-c2e6-4529-bfd8-b86214ab8843.png)
 
@@ -38,8 +38,8 @@ Or create an account [here](https://www.opensubtitles.com/en)
 
 ## How do I add my own subtitle
 There are two ways you can add your own subtitle.
-1. From the device (`Video player> sources> subtitles> Load from file`)
-2. From the [Open substitles](https://www.opensubtitles.com/en/upload)
+- From the device (`Video player> sources> subtitles> Load from file`)
+- From the [Open substitles](https://www.opensubtitles.com/en/upload)
 ![image](https://user-images.githubusercontent.com/57977673/194717175-175f3e4d-7161-4c7a-b10a-31e1d995ab2f.png)
 
 

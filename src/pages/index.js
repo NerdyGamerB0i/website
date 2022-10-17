@@ -5,7 +5,6 @@ import Hero from "../components/hero"
 import CompatBtn from "../components/compatbtn"
 
 import bgImage from "../media/phones.png"
-import { Link } from "gatsby"
 
 const IndexPage = () => {
     return <Layout>
@@ -17,7 +16,7 @@ const IndexPage = () => {
                 <div className="divider divider-horizontal" />
                 <CompatBtn className="btn-primary" href="/repos">Repositories</CompatBtn>
             </div>
-            <Link to="/docs" className="link">Documentation</Link>
+            <CompatBtn className="btn-secondary" href="/docs">Help</CompatBtn>
         </Hero>
     </Layout>
 
