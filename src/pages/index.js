@@ -34,7 +34,7 @@ export function Head() {
             <meta property="og:image" content={bgImage} />
             <meta property="og:image:type" content="image/png" />
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="google-site-verification" content="eJAZtihmv0cJwd54kImmb2IfwLskeCfyW7gEm_HgXd8" />
+            <meta name="google-site-verification" content="c7TphrPJk4AXlG4P_J3ZRpJ7V3yFzG_cjd-A37ih1fE" />
         </>
     )
 }
