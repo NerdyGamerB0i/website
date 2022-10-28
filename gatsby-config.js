@@ -1,11 +1,13 @@
 module.exports = {
   siteMetadata: require("./metadata"),
-  pathPrefix: './.',
+  pathPrefix: '__GATSBY_IPFS_PATH_PREFIX__',
   plugins: [
+    'gatsby-plugin-sitemap',
+    { resolve: 'gatsby-plugin-robots-txt', options: { policy: [{userAgent: '*', allow: '/'}] } },
     {
       resolve: `gatsby-plugin-runtime-path-prefix`,
       options: {
-        prefix: `./.`,
+        prefix: `__GATSBY_IPFS_PATH_PREFIX__`,
         pattern: /^(\/(?:ipfs|ipns)\/[^/]+)/
       },
     },
@@ -17,8 +19,6 @@ module.exports = {
     },
     'gatsby-plugin-postcss',
     'gatsby-plugin-preact',
-    'gatsby-plugin-sitemap',
-    { resolve: 'gatsby-plugin-robots-txt', options: { policy: [{userAgent: '*', allow: '/'}] } },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
