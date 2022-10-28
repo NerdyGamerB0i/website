@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: require("./metadata"),
-  pathPrefix: '__PATH_PREFIX__',
+  pathPrefix: './.',
   plugins: [
     {
       resolve: `gatsby-plugin-runtime-path-prefix`,
       options: {
-        prefix: `__PATH_PREFIX__`,
+        prefix: `./.`,
         pattern: /^(\/(?:ipfs|ipns)\/[^/]+)/
       },
     },
