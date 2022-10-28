@@ -1,7 +1,7 @@
 ---
 title: Subtitle Related FAQ
 parent: For users
-order: 5
+order: 6
 ---
 
 ## Subtitle appearance settings

@@ -10,6 +10,8 @@ This [open source app](https://github.com/recloudstream/cloudstream) can stream 
 
 Check out the [FAQ](../faq.md) first!
 
+Also check out [Troubleshooting](../troubleshooting.md) if you have any issues.
+
 ### Disclaimer ⚠️
 The app is purely for educational and personal use.
 

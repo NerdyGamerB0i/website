@@ -1,7 +1,7 @@
 ---
 title: Installation on Windows 11
 parent: For users
-order: 4
+order: 5
 ---
 
 ## For Windows 11 users

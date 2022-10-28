@@ -1,7 +1,7 @@
 ---
 title: How to use trakt list through stremio
 parent: For users
-order: 7
+order: 8
 ---
 
 ⚠ The Stremio extension is still experimental. Don't expect a stremio like experience. Most of the public stremio sources are torrent based but cloudstream doesn't support torrent stream. So, none of the popular sources will work here. The below trakt example is link only and it will not play any video. Also, this trakt doesn't sync anything.

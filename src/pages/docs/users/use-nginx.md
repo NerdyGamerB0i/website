@@ -1,7 +1,7 @@
 ---
 title: How to use nginx with cloudstream
 parent: For users
-order: 3
+order: 4
 ---
 
 ## What is Nginx?
@@ -26,9 +26,9 @@ The advantages of this provier over jellyfin are that it's lightweight and integ
 - You can also self host the media server, I cover the install of nginx [here](https://www.sarlays.com/unlisted/self-host-nginx) (harder)
 
 Here I'll cover the install on a managed seedbox using ultra.cc
-
-Here is a diagram I made to summarize how everything works:
 <!-- 
+Here is a diagram I made to summarize how everything works:
+
 ```mermaid
 flowchart TB
 
@@ -50,9 +50,10 @@ Sonarr -- > |Send torrent| A(Radarr)
 Radarr[Radarr] -- > |Send torrent| A(Radarr)
 A[Transmission] -- >|Download to filesystem| C{Nginx}
 C -- >|Stream| D(Cloudstream-3)
-``` -->
+
 
 Prowlarr is between the tracker and the media mangment apps (radarr and sonarr): it handles the requests to the trackers (that you add inside prowlarr)
+``` -->
 
 ### What are trackers?
 

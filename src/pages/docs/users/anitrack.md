@@ -1,7 +1,7 @@
 ---
 title: Anime tracking FAQ
 parent: For users
-order: 6
+order: 7
 ---
 
 # Anime tracking FAQ
