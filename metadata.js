@@ -1,4 +1,4 @@
 module.exports = {
     title: `Cloudstream`,
-    siteUrl: `https://cloudstream.cf`
+    siteUrl: `https://cloudstream.cf/`
 }
