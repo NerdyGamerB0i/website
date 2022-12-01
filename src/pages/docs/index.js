@@ -2,7 +2,7 @@ import { graphql, StaticQuery } from "gatsby"
 import React from "react"
 import Layout from "../../components/layout"
 import DocsCard from "../../components/cards/docs"
-import bgImage from "../../media/phones.png"
+import SEO from "../../components/seo"
 
 const DocsPage = () => {
 
@@ -50,14 +50,5 @@ export default DocsPage
 
 
 export function Head() {
-    return (
-        <>
-            <title>Cloudstream Docs</title>
-            <meta property="og:title" content="Cloudstream Docs" />
-            <meta property="og:description" content="Cloudstream is an Android app for streaming and downloading Movies, TV-Series and Anime." />
-            <meta property="og:image" content={bgImage} />
-            <meta property="og:image:type" content="image/png" />
-            <meta name="twitter:card" content="summary_large_image" />
-        </>
-    )
+    return <SEO title="Cloudstream Docs" />
 }

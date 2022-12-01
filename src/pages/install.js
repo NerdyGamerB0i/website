@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react"
 import Layout from "../components/layout"
 import Hero from "../components/hero"
 import CompatBtn from "../components/compatbtn"
+import SEO from "../components/seo"
 
-import bgImage from "../media/phones.png"
+import bgImage from "../media/phones.webp"
 
 const InstallPage = () => {
     const [data, setData] = useState(null)
@@ -78,16 +79,7 @@ const InstallPage = () => {
 }
 
 export function Head() {
-    return (
-        <>
-            <title>Cloudstream installation</title>
-            <meta property="og:title" content="Cloudstream" />
-            <meta property="og:description" content="Cloudstream is an Android app for streaming and downloading Movies, TV-Series and Anime." />
-            <meta property="og:image" content={bgImage} />
-            <meta property="og:image:type" content="image/png" />
-            <meta name="twitter:card" content="summary_large_image" />
-        </>
-    )
+    return <SEO title="Cloudstream installation" />
 }
 
 export default InstallPage

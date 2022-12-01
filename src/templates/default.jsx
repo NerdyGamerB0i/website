@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import bgImage from "../media/phones.png"
+import SEO from "../components/seo"
 import DocsCard from "../components/cards/docs"
 import { node2slug } from "../utils";
 
@@ -94,17 +94,7 @@ export default function PageTemplate({ data: { markdownRemark, allMarkdownRemark
 }
 
 export function Head({ data }) {
-  return (
-    <>
-      <title>{data.markdownRemark.frontmatter.title}</title>
-      <meta property="og:title" content={data.markdownRemark.frontmatter.title} />
-      <meta property="og:description" content={data.markdownRemark.excerpt} />
-      <meta property="og:image" content={bgImage} />
-      <meta property="og:image:type" content="image/png" />
-      <meta name="twitter:card" content="summary_large_image" />
-    </>
-
-  )
+  return <SEO title={data.markdownRemark.frontmatter.title} description={data.markdownRemark.excerpt} />
 }
 
 export const pageQuery = graphql`

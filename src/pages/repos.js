@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react"
 import Layout from "../components/layout"
 import RepoCard from "../components/cards/repo"
 import AdbConnect from "../components/adbconnect"
-import bgImage from "../media/phones.png"
+import SEO from "../components/seo"
 
 import { TiWarning } from "react-icons/ti";
 import { BiErrorAlt } from "react-icons/bi";
@@ -12,7 +12,7 @@ import { IconContext } from "react-icons";
 
 import "./repos.css";
 
-const IndexPage = () => {
+const ReposPage = () => {
     const [repos, setRepos] = useState(null);
     const [hadError, setHadError] = useState(false);
     
@@ -84,16 +84,7 @@ const IndexPage = () => {
 }
 
 export function Head() {
-    return (
-        <>
-            <title>Cloudstream Repositories</title>
-            <meta property="og:title" content="Cloudstream Repositories" />
-            <meta property="og:description" content="Cloudstream is an Android app for streaming and downloading Movies, TV-Series and Anime." />
-            <meta property="og:image" content={bgImage} />
-            <meta property="og:image:type" content="image/png" />
-            <meta name="twitter:card" content="summary_large_image" />
-        </>
-    )
+    return <SEO title="Cloudstream Repositories" />
 }
 
-export default IndexPage
+export default ReposPage
