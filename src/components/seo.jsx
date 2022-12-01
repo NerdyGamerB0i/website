@@ -9,6 +9,7 @@ const desc = "Cloudstream is an Android app for streaming and downloading Movies
 const SEO = ({children, title, description}) => {
     return <>
         <title>{title || "Cloudstream"}</title>
+        <meta name="description" content={description || desc} />
         <meta property="og:title" content={title || "Cloudstream"} />
         <meta property="og:description" content={description || desc} />
         <meta property="og:image" content={bgImage} />
