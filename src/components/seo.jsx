@@ -1,3 +1,5 @@
+import React from "react"
+
 import bgImage from "../media/phones.webp"
 import logo from "../media/icon.svg"
 
